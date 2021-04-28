@@ -8,6 +8,6 @@ Mettre à jour la bdd avec nos entity à l'aide de doctrine :
 symfony console make:migration -> fichier migration
 symfony console doctrine:migrations:migrate -> MAJ de notre bdd
 symfony console make:form
-
-
-
+symfony console make:auth
+symfony console make:admin:dashboard
+symfony console make:admin:crud

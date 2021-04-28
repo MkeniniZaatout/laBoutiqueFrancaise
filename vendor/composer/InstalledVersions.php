@@ -25,16 +25,25 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v5.2.99',
-    'version' => '5.2.99.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
-    'name' => 'symfony/website-skeleton',
+    'reference' => 'dafb298e49eb467d728dea0d1ba8343627fc8e6b',
+    'name' => '__root__',
   ),
   'versions' => 
   array (
+    '__root__' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'dafb298e49eb467d728dea0d1ba8343627fc8e6b',
+    ),
     'composer/package-versions-deprecated' => 
     array (
       'pretty_version' => '1.11.99.1',
@@ -187,6 +196,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '56070bebac6e77230ed7d306ad13528e60732871',
+    ),
+    'easycorp/easyadmin-bundle' => 
+    array (
+      'pretty_version' => 'v3.2.9',
+      'version' => '3.2.9.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '92175620303bec3374e9356e5018aa565269fd1f',
     ),
     'egulias/email-validator' => 
     array (
@@ -390,8 +408,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache-implementation' => 
@@ -830,6 +848,15 @@ private static $installed = array (
       ),
       'reference' => 'dc3063ba22c2a1fd2f45ed856374d79114998f91',
     ),
+    'symfony/polyfill-uuid' => 
+    array (
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9773608c15d3fe6ba2b6456a124777a7b8ffee2a',
+    ),
     'symfony/process' => 
     array (
       'pretty_version' => 'v5.2.4',
@@ -1006,6 +1033,15 @@ private static $installed = array (
       ),
       'reference' => '5ebbb5f0e8bfaa0b4b37cb25ff97f83b18caf221',
     ),
+    'symfony/uid' => 
+    array (
+      'pretty_version' => 'v5.2.6',
+      'version' => '5.2.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '47d4347b762f0bab9b4ec02112ddfaaa6d79481b',
+    ),
     'symfony/validator' => 
     array (
       'pretty_version' => 'v5.2.6',
@@ -1050,15 +1086,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '58e5be2aa69041ff35250537190d9ec29136782a',
-    ),
-    'symfony/website-skeleton' => 
-    array (
-      'pretty_version' => 'v5.2.99',
-      'version' => '5.2.99.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => NULL,
     ),
     'symfony/yaml' => 
     array (
