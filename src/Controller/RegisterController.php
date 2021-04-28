@@ -27,7 +27,7 @@ class RegisterController extends AbstractController
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new User();
-        $form = $this->createForm(RegisterType::class, $user );
+        $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);
 
