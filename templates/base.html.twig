@@ -12,6 +12,8 @@
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
+        <!-- boutique française css -->
+        <link href="{{asset('assets/css/boutiqueFrançaise.css')}}" rel="stylesheet">
 
         <style>
             .bd-placeholder-img {
@@ -36,28 +38,29 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a class="navbar-brand" href="#">Carousel</a>
+                <a class="navbar-brand" href="{{ path('home') }}">La Boutique Française 🇫🇷</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('home') }}">Nos produits</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="{{ path('home') }}">Qui somme-nous ?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <a class="nav-link" href="{{ path('home') }}">Contact</a>
                         </li>
                     </ul>
-                    {% if app.user %}
-                    <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Deconnexion</a>  
-                    {% else %}
-                    <a href="{{ path('app_login') }}">Connexion </a> | <a href="{{ path('register') }}"> Inscription</a>
-                    {% endif %}
-                    
+                    <div class="navbar-item-custom">
+                        {% if app.user %}
+                            <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Deconnexion</a>  
+                        {% else %}
+                            <a href="{{ path('app_login') }}">Connexion </a> | <a href="{{ path('register') }}"> Inscription</a>
+                        {% endif %}
+                    </div>
                 </div>
             </nav>
         </header>
@@ -116,9 +119,12 @@
                 {% endblock %}
             </div>
             <!-- FOOTER -->
-            <footer class="container">
-                <p class="float-right"><a href="#">Back to top</a></p>
-                <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <footer class="footer-custom mb-1">
+                <p>
+                    &copy; 2017-2021 La Boutique Française.</br>
+                    <small>Boutique 100% Française</br>
+                    <a href="#">Privacy</a> &middot; <a href="#">Terms</a></small>
+                </p>
             </footer>
         </main>
     </body>
