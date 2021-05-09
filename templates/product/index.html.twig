@@ -8,19 +8,28 @@
 <div class="container">
     <div class="row">
         {% for product in products %}
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-2">
             <div class="card card-edit">
                 <img class="card-img" src="{{ asset('uploads/') }}{{product.illustration}}" alt="{{product.name}}">
-                <div class="card-img-overlay d-flex justify-content-end">
-                <a href="#" class="card-link text-danger like">
-                    <i class="fas fa-heart"></i>
-                </a>
-                </div>
                 <div class="card-body">
+                    {% if product.stars == 1 %}
+                    <h6>Avis : ⭐</h6>
+                    {% elseif product.stars == 2 %}
+                    <h6>Avis : ⭐⭐</h6>
+                    {% elseif product.stars == 3 %}
+                    <h6>Avis : ⭐⭐⭐</h6>
+                    {% elseif product.stars == 4 %}
+                    <h6>Avis : ⭐⭐⭐⭐</h6>                    
+                    {% elseif product.stars == 5 %}
+                    <h6>Avis : ⭐⭐⭐⭐⭐</h6>
+                    {% else %}
+                    <h6>Avis : Aucun avis</h6>
+                    {% endif %}
                 <h4 class="card-title">{{product.subtitle}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Couleur: {{product.color}}</h6>
                 <p class="card-text">
                     {{product.description}}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Couleur : <span>{{product.color}}</span></h6>
+                
                 <div class="buy d-flex justify-content-between align-items-center">
                     <div class="price text-success"><h5 class="mt-4">{{product.price}} €</h5></div>
                 </div>

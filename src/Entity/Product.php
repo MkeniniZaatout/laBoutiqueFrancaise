@@ -58,6 +58,11 @@ class Product
      */
     private $color;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $stars;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +160,18 @@ class Product
     public function setColor(?string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    public function getStars(): ?int
+    {
+        return $this->stars;
+    }
+
+    public function setStars(?int $stars): self
+    {
+        $this->stars = $stars;
 
         return $this;
     }

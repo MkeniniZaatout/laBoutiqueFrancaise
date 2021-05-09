@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Crimson";
+    src: url("../../fonts/CrimsonText-Regular.ttf");
+}
+
+h1, h2, h3, h4, h5, h6  {
+    font-family :Crimson !important;
+}
+
 .navbar-item-custom .navbar-item-custom a {
     color: #fff;
 }
@@ -14,8 +23,4 @@
 
 .like {
     font-size: 1.5rem;
-}
-
-.card-edit {
-height: 745px !important;
 }
