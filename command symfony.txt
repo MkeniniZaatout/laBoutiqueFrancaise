@@ -1,6 +1,6 @@
 command symfony :
 
-symfony server
+symfony serve
 symfony console make:user
 symfony console make:controller
 

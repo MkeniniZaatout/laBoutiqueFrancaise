@@ -33,7 +33,7 @@
                 <div class="buy d-flex justify-content-between align-items-center">
                     <div class="price text-success"><h5 class="mt-4">{{product.price}} €</h5></div>
                 </div>
-                    <a href="#" class="btn btn-block btn-lg btn-danger mt-3"><i class="fa fa-shopping-cart"></i> Voir le produit</a>
+                    <a href="{{ path('product', {id: product.id}) }}" class="btn btn-block btn-lg btn-danger mt-3"><i class="fa fa-shopping-cart"></i> Voir le produit</a>
 
                 </div>
             </div>

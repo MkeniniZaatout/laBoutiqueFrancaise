@@ -21,4 +21,17 @@ class ProductController extends AbstractController
             'products' => $products,
         ]);
     }
+
+    /**
+     * @Route("/produit/{id}", name="product")
+     */
+    public function show($id): Response
+    {
+        $product = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findOneBy(['id' => $id]);
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
 }
