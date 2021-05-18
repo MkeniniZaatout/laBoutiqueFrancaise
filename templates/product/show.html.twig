@@ -10,13 +10,13 @@
         </div>
         <div class="col-md-8">
             <h2 class='text-dark'> {{ product.name }} </h2>
-            <h5 class="text-primary"> {{ product.price }} € </h5>
+            <h5 class="text-primary"> {{ (product.price / 100)|number_format(2, ',', '.') }} € </h5>
             <hr>
             <p class='text-dark'> {{ product.subtitle }}<br>
             {{ product.description }}<br>
             </p>
             <h5 class="text-dark"> Couleur : {{ product.color }} </h5>
-            <a href='' class="btn btn-outline-success">AJOUTER AU PANIER</a>
+            <a href='' class="mt-2 btn btn-outline-success">AJOUTER AU PANIER</a>
         </div>
 
     </div>
