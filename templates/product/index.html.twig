@@ -6,14 +6,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <h3>Filter :</h3>
-            colonne de filtre
+        <div class="filtre col-md-3">
+            <h3>Filtre  :</h3>
+            {% include 'product/_filter.html.twig' with {form: form} only %}
+            
         </div>
         {% for product in products %}
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-2">
             <div class="card card-edit">
-                <img class="card-img" src="{{ asset('uploads/') }}{{product.illustration}}" alt="{{product.name}}">
+                <a href="{{ path('product', {slug: product.slug}) }}"><img class="card-img" src="{{ asset('uploads/') }}{{product.illustration}}" alt="{{product.name}}"></a>
                 <div class="card-body">
                     {% if product.stars == 1 %}
                     <h6>Avis : ⭐</h6>
@@ -36,7 +37,7 @@
                 <div class="buy d-flex justify-content-between align-items-center">
                     <div class="price text-success"><h5 class="mt-2">{{ (product.price / 100)|number_format(2, ',', '.') }} €</h5></div>
                 </div>
-                    <a href="{{ path('product', {id: product.id}) }}" class="btn btn-outline-primary mt-3"><i class="fa fa-shopping-cart"></i> Voir le produit</a>
+                    <a href="{{ path('product', {slug: product.slug}) }}" class="btn btn-outline-primary mt-3"><i class="fa fa-shopping-cart"></i> Voir le produit</a>
 
                 </div>
             </div>
