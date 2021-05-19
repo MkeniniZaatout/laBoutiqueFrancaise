@@ -24,11 +24,11 @@ h1, h2, h3, h4, h5, h6  {
     background-color:#222;
     padding-top: 3px;
 }
-
+/*
 select option {
-    color : red !important;
+    color : #A9A9A9 !important;
 }
-
+*/
 .filtre{
     background-color: #eee;
 } 

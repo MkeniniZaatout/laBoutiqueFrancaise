@@ -7,12 +7,18 @@ Class Search {
     /**
      * @var string 
      */
-    public $string = '';
-
+    public $name = '';
+    
     /**
      * @var float 
      */
-    public $price;
+    public $min;
+
+    
+    /**
+     * @var float 
+     */
+    public $max;
 
     /**
      * @var string 
@@ -23,6 +29,11 @@ Class Search {
      * @var Category[]
      */
     public $categories = [];
+
+    /**
+     * @var number
+     */
+    public $stars;
 
 }
 

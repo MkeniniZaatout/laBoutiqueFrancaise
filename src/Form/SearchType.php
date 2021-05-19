@@ -13,7 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class SearchType extends AbstractType {
 
@@ -21,7 +23,7 @@ class SearchType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('string', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Recherche',
                 'required' => false,
                 'attr' => [
@@ -40,6 +42,20 @@ class SearchType extends AbstractType {
                 'expanded' => true
 
             ])
+            ->add('min', NumberType::class, [
+                'label' => 'Prix',
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Prix min'
+                ]
+            ])
+            ->add('max', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Prix max'
+                ]
+            ])
             /**
              * TO DO : Color class.
              */
@@ -54,9 +70,16 @@ class SearchType extends AbstractType {
                     'Bleu' => 'bleu'
                 ],
             ])
-            ->add('price', MoneyType::class, [
-                'label' => 'Prix',
+            ->add('stars', ChoiceType::class, [
+                'label' => 'Note',
                 'required' => false,
+                'choices'  => [
+                    '⭐' => 1,
+                    '⭐⭐' => 2 ,
+                    '⭐⭐⭐' => 3,
+                    '⭐⭐⭐⭐' => 4,
+                    '⭐⭐⭐⭐⭐' => 5
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Filtrer",
