@@ -16,7 +16,7 @@
             {{ product.description }}<br>
             </p>
             <h5 class="text-dark"> Couleur : {{ product.color }} </h5>
-            <a href='' class="mt-2 btn btn-outline-success">AJOUTER AU PANIER</a>
+            <a href='{{path("panier_add", {id : product.id}) }}' class="mt-2 btn btn-outline-success">AJOUTER AU PANIER</a>
         </div>
 
     </div>

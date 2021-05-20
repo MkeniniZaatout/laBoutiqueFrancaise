@@ -26,10 +26,16 @@ class PanierController extends AbstractController
     public function add($id, $quatity = 1, Panier $panier)
     {
         $panier->add($id, $quatity);
-        return $this->render('panier/index.html.twig', [
-            'productAdd' => $id,
-        ]);
-         
+        return $this->redirectToRoute('panier'); 
+    }
+
+    /**
+     * @Route("/mon-panier/remove/{id}", name="panier_remove")
+     */
+    public function remove($id, Panier $panier)
+    {
+        $panier->delete($id);
+        return $this->redirectToRoute('panier'); 
     }
 
 }
