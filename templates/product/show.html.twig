@@ -12,11 +12,13 @@
             <h2 class='text-dark'> {{ product.name }} </h2>
             <h5 class="text-primary"> {{ (product.price / 100)|number_format(2, ',', '.') }} € </h5>
             <hr>
-            <p class='text-dark'> {{ product.subtitle }}<br>
-            {{ product.description }}<br>
-            </p>
-            <h5 class="text-dark"> Couleur : {{ product.color }} </h5>
-            <a href='{{path("panier_add", {id : product.id}) }}' class="mt-2 btn btn-outline-success">AJOUTER AU PANIER</a>
+            <p class='text-dark'> {{ product.subtitle }}</p><br>
+            <p class='text-dark'>{{ product.description }}</p><br>
+            <div class="row">
+                <div class="col-md-3"><h5 class="text-dark"> Couleur : {{ product.color }} </h5></div>
+                <div><a href='{{path("panier_add", {id : product.id}) }}' class="mt-2 btn btn-outline-success">AJOUTER AU PANIER</a></div>
+            </div>
+
         </div>
 
     </div>

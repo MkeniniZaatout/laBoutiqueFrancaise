@@ -12,11 +12,19 @@ Class Panier {
         $this->session = $session;
     }
 
-    public function add($id, $quantity) {
+    public function add($id ,$quantity) {
 
-        $this->session->set('panier', [
-            ['id' => $id, 'quantity' => $quantity]
-        ]);
+        // Je verifie si l'article n'est pas déjà dans le panier
+        // pour faire de doublon
+        $panier = $this->session->get('panier', []);
+        if(!empty($panier[$id])) {
+            // Si s'est le cas j'incrémente 
+            $panier[$id]++;
+        } else {
+            $panier[$id] = 1;
+        }
+
+        $this->session->set('panier', $panier);
     }
 
     public function delete($id) {
