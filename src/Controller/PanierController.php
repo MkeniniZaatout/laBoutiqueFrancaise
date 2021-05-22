@@ -10,23 +10,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/mon-panier", name="panier")
+     * @Route("/mon-panier", name="show_panier")
      */
     public function index(Panier $panier): Response
     {
-        dd($panier->get('panier'));
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
+            'panier' => $panier->get('panier'),
         ]);
     }
 
     /**
      * @Route("/mon-panier/add/{id}", name="panier_add")
      */
-    public function add($id, $quatity = 1, Panier $panier)
+    public function add($id, $quantity = 1, Panier $panier)
     {
-        $panier->add($id, $quatity);
-        return $this->redirectToRoute('panier'); 
+        $panier->add($id, $quantity);
+        return $this->redirectToRoute('show_panier'); 
     }
 
     /**
