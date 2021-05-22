@@ -36,3 +36,7 @@ select option {
 .like {
     font-size: 1.5rem;
 }
+
+.panier-product-img {
+    width: 15% !important;
+}

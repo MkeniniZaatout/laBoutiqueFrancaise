@@ -4,6 +4,7 @@
 
 {% block content %}
 
+
 <div class="container">
     <div class="row">
         <h1> Mon Panier :</h1>
@@ -11,19 +12,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">#ref</th>
                     <th scope="col">Produit</th>
-                    <th scope="col">Quantité</th>
+                    <th class='text-center' scope="col">Quantité</th>
                     <th scope="col">Prix</th>
+                    <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for product in panier %} 
                     <tr>
                         <th scope="row"></th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td><img src="{{ asset('uploads/') }}{{product.product.illustration}}" class="panier-product-img" alt="{{product.product.slug}}">&ensp;{{product.product.subtitle}}</td>
+                        <td class='text-center'>{{product.quantity}}</td>
+                        <td class="font-weight-bold">{{product.product.price * 0.01}} €</td>
+                        <td class="font-weight-bold">
+                            <a href='{{path('panier_remove', {id : product.product.id} )}}' class="btn btn-danger  mb-4">Supprimer</a><br>
+                            <a href='{{path('show_panier')}}' class="btn btn-light">Mettre de coté</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

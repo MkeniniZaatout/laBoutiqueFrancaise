@@ -20,32 +20,25 @@ Class Panier {
     public function add($id ,$quantity = 1) {
 
         $panierActuel = $this->session->get('panier', []);
+
         // Je verifie si l'article n'est pas déjà dans le panier
         // pour faire de doublon
         if(!empty($panierActuel[$id])) {
-            // Si s'est le cas j'incrémente 
+            // Si s'est le cas j'incrémente la quantité
             $panierActuel[$id]['quantity'] += 1;
         } else {
-            $produitComplet = [];
-            $produitComplet[$id] = [
+            $produitComplet = [
                 'product' => $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]), 
-                'quantity' => $quantity
+                'quantity' => 1
             ];
-            array_push($panierActuel, $produitComplet[$id]);
+            $panierActuel[$id] = $produitComplet;
         }
         $this->session->set('panier', $panierActuel);
-        dd($this->get('panier'));
     }
 
     public function delete($id) {
 
-        $this->session->remove('panier', [
-            ['id' => $id]
-        ]);
-    }
-
-    public function findProduct($idProduct) {
-
+        $this->session->remove('panier');
     }
 
     public function get(string $element) {
