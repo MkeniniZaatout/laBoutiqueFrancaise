@@ -29,12 +29,21 @@ class PanierController extends AbstractController
     }
 
     /**
-     * @Route("/mon-panier/remove/{id}", name="panier_remove")
+     * @Route("/mon-panier/remove/{id}", name="panier_remove_product")
      */
-    public function remove($id, Panier $panier)
+    public function removeProduct($id, Panier $panier)
     {
         $panier->delete($id);
-        return $this->redirectToRoute('panier'); 
+        return $this->redirectToRoute('show_panier'); 
+    }
+
+    /**
+     * @Route("/mon-panier/remove", name="panier_remove")
+     */
+    public function remove(Panier $panier)
+    {
+        $panier->delete();
+        return $this->redirectToRoute('show_panier'); 
     }
 
 }
