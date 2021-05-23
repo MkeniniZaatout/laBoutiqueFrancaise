@@ -3,6 +3,7 @@ command symfony :
 symfony serve
 symfony console make:user
 symfony console make:controller
+symfony console make:entity
 
 Mettre à jour la bdd avec nos entity à l'aide de doctrine :
 symfony console make:migration -> fichier migration
