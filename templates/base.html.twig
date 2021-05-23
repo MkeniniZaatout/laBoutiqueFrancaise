@@ -56,11 +56,12 @@
                     </ul>
                     <div class="navbar-item-custom">
                         {% if app.user %}
-                            <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Deconnexion</a>  
+                            <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Deconnexion</a>
                         {% else %}
                             <a href="{{ path('app_login') }}">Connexion </a> | <a href="{{ path('register') }}"> Inscription</a>
                         {% endif %}
                     </div>
+                    &ensp;|&ensp;<a href="{{ path('show_panier') }}"><img src="{{ asset('img/shopping-cart.png') }}" width='18px'></a><span class='badge badge-light'>1</span>
                 </div>
             </nav>
         </header>

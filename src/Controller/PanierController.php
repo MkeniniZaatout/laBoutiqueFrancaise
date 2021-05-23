@@ -43,7 +43,15 @@ class PanierController extends AbstractController
     public function remove(Panier $panier)
     {
         $panier->delete();
-        return $this->redirectToRoute('show_panier'); 
+        return $this->redirectToRoute('show_panier');
     }
 
+    /**
+     * @Route("/mon-panier/remove/quantity/{id}", name="panier_remove_quantity") 
+     */
+    public function removeQuantity($id, Panier $panier) 
+    {
+        $panier->decrease($id);
+        return $this->redirectToRoute('show_panier');
+    }
 }

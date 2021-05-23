@@ -7,8 +7,8 @@ body {
     position: relative;
 }
 
-h1, h2, h3, h4, h5, h6  {
-    font-family :Crimson !important;
+body  {
+    font-family :Crimson ;
 }
 
 .navbar-item-custom .navbar-item-custom a {
@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6  {
     width: 100%;
     background-color:#222;
     padding-top: 3px;
+    margin-top: 150px;
 }
 /*
 select option {

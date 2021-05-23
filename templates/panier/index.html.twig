@@ -29,7 +29,11 @@
                         <tr>
                             <td><a href='{{path('product', {slug : product.product.slug })}}' ><img src="{{ asset('uploads/') }}{{product.product.illustration}}" class="panier-product-img" alt="{{product.product.slug}}"></a>&ensp;{{product.product.subtitle}}</td>
                             <td class="text-center font-weight-bold">{{product.product.price * 0.01}}€</td>
-                            <td class='text-center'>x {{product.quantity}}</td>
+                            <td class='text-center'>
+                                    <a class="btn mb-3" href='{{path('panier_add', {id : product.product.id})}}'><img src='{{ asset('img/add.png')}}' width='13'>&ensp;</a>
+                                        x {{product.quantity}}&ensp;
+                                    <a class="btn mb-3" href='{{path('panier_remove_quantity', {id : product.product.id})}}'><img src='{{ asset('img/minus-line.png')}}' width='14'></a>
+                            </td>
                             <td class="text-center font-weight-bold">
                                 <a href='{{path('panier_remove_product', {id : product.product.id })}}' class="btn mb-4">
                                     <img src="{{ asset('img/delete.png')}}" width='15' alt='supprimer mon produit'>

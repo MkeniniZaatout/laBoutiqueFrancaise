@@ -46,11 +46,18 @@ Class Panier {
         }
     }
 
-
-
     public function get(string $element) {
-
         return $this->session->get($element);
+    }
+
+    public function decrease($id) {
+        $panier = $this->get('panier');
+        if(isset($panier[$id])) {
+            $panier[$id]['quantity'] > 1 ? $panier[$id]['quantity'] -= 1 : $this->delete($id);
+            $this->session->set('panier', $panier);
+        } else {
+            die('Action impossible');
+        }
     }
 }
 
