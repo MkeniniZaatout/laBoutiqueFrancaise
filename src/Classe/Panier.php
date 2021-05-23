@@ -17,7 +17,7 @@ Class Panier {
         $this->session = $session;
     }
 
-    public function add($id ,$quantity = 1) {
+    public function add($id) {
 
         $panierActuel = $this->session->get('panier', []);
 
@@ -27,11 +27,8 @@ Class Panier {
             // Si s'est le cas j'incrémente la quantité
             $panierActuel[$id]['quantity'] += 1;
         } else {
-            $produitComplet = [
-                'product' => $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]), 
-                'quantity' => 1
-            ];
-            $panierActuel[$id] = $produitComplet;
+            $product_object = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
+            (!$product_object) ? die('Action impossible, produit inexistant') : $panierActuel[$id] = ['product' => $product_object, 'quantity' => 1];
         }
         $this->session->set('panier', $panierActuel);
     }
