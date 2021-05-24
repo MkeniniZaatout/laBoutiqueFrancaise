@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une addresse - La Boutique Française{% endblock %}
+
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-center font-weight-bold'>Ajouter une nouvelle addresse</h1>
+
+    {% include 'account/_formAddress.html.twig' with {form: form} only %}
+
+</div>
+
+{% endblock %}

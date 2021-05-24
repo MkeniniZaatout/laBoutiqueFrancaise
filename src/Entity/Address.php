@@ -18,7 +18,7 @@ class Address
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="y")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userAddress")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -67,6 +67,21 @@ class Address
      * @ORM\Column(type="integer")
      */
     private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $codePorte;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $instruction;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $notWeekEnd;
 
     public function getId(): ?int
     {
@@ -189,6 +204,42 @@ class Address
     public function setPhone(int $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCodePorte(): ?string
+    {
+        return $this->codePorte;
+    }
+
+    public function setCodePorte(?string $codePorte): self
+    {
+        $this->codePorte = $codePorte;
+
+        return $this;
+    }
+
+    public function getInstruction(): ?string
+    {
+        return $this->instruction;
+    }
+
+    public function setInstruction(?string $instruction): self
+    {
+        $this->instruction = $instruction;
+
+        return $this;
+    }
+
+    public function getNotWeekEnd(): ?bool
+    {
+        return $this->notWeekEnd;
+    }
+
+    public function setNotWeekEnd(?bool $notWeekEnd): self
+    {
+        $this->notWeekEnd = $notWeekEnd;
 
         return $this;
     }

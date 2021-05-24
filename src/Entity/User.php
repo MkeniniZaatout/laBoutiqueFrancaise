@@ -49,7 +49,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=Address::class, mappedBy="user")
      */
-    private $y;
+    private $userAddress;
 
     public function __construct()
     {
@@ -164,30 +164,32 @@ class User implements UserInterface
     /**
      * @return Collection|Address[]
      */
-    public function getY(): Collection
+    
+    public function getUserAddress(): Collection
     {
-        return $this->y;
+        return $this->userAddress;
     }
 
-    public function addY(Address $y): self
+    public function addUserAddress(Address $userAddress): self
     {
-        if (!$this->y->contains($y)) {
-            $this->y[] = $y;
-            $y->setUser($this);
+        if (!$this->y->contains($userAddress)) {
+            $this->y[] = $userAddress;
+            $userAddress->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeY(Address $y): self
+    public function removeUserAddress(Address $userAddress): self
     {
-        if ($this->y->removeElement($y)) {
+        if ($this->y->removeElement($userAddress)) {
             // set the owning side to null (unless already changed)
-            if ($y->getUser() === $this) {
-                $y->setUser(null);
+            if ($userAddress->getUser() === $this) {
+                $userAddress->setUser(null);
             }
         }
 
         return $this;
     }
+    
 }
