@@ -60,8 +60,13 @@ class AccountAddressController extends AbstractController
      */
     public function remove($id)
     {
-        $address = new Address();
+        $address = $this->getDoctrine()->getRepository(Address::class)->findOneBy(['id' => $id]);
+        if(!empty($address)) {
+            $this->entityManager->remove($address);
+            $this->entityManager->flush();
+        } else {
 
+        }
         return $this->redirectToRoute('compte_address');
     }
 
@@ -70,8 +75,12 @@ class AccountAddressController extends AbstractController
      */
     public function edit($id)
     {
-        $address = new Address();
+        $address = $this->getDoctrine()->getRepository(Address::class)->findOneBy(['id' => $id]);
+        if(!empty($address)) {
 
+        } else {
+
+        }
         return $this->redirectToRoute('compte_address');
     }
 }

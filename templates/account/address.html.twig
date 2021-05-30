@@ -9,15 +9,16 @@
         <hr>
         <h4>Vos addresses actuel : </h4>
         <div class='mt-2 row m-3'>
-        {% if addresses|length > 0 %}
-                {% for addresse in addresses %}
+        {% set adresses = app.user.userAddress %}
+        {% if adresses|length > 0 %}
+                {% for addresse in adresses %}
                 <div class="mb-3 col-md-4 card mr-1 text-center">
                         <h3>{{addresse.name}}</h3>
                         <p>{{addresse.firstname}} {{addresse.lastname}}</br> 
                         {{addresse.address}} </br> 
                         {{addresse.postal}} {{addresse.City}} {{addresse.country}}</p>
-                        <a href="{{ path("compte_address_remove") }}" class='btn btn-danger float-right mb-1'>Supprimer</a>
-                        <a href="{{ path("compte_address_edit") }}" class='btn btn-secondary float-right'>Modifier</a>
+                        <a href="{{ path("compte_address_remove", {id : addresse.id}) }}" class='btn btn-danger float-right mb-1'>Supprimer</a>
+                        <a href="{{ path("compte_address_edit", {id : addresse.id}) }}" class='btn btn-secondary float-right'>Modifier</a>
                 </div>
                 {% endfor %}
         {% else %}

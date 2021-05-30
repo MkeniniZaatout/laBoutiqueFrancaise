@@ -29,10 +29,7 @@ class ProductRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('product')
         ->select('category','product')
         ->join('product.category','category');
-        /*
-        ->andWhere('product.name = :name ')
-        ->andWhere('product.color = :color');
-        */
+        
         if(!empty($search->categories)) {
             $query = $query->andWhere('category.id IN (:categories)')->setParameter('categories', $search->categories);
         }
