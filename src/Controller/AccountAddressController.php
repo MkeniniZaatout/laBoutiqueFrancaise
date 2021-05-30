@@ -73,14 +73,25 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/compte/address/edit/{id}", name="compte_address_edit")
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $address = $this->getDoctrine()->getRepository(Address::class)->findOneBy(['id' => $id]);
-        if(!empty($address)) {
+        if(!$address || $address->getUser() != $this->getUser() ) { 
+            return $this->redirectToRoute('compte_address');
+        }
 
-        } else {
+        $form = $this->createForm(AddressType::class, $address);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            return $this->redirectToRoute('compte_address');
 
         }
-        return $this->redirectToRoute('compte_address');
+
+        return $this->render('account/add_address.html.twig',[
+            'form' => $form->createView()
+        ]);
     }
 }
