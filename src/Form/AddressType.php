@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\Length as ConstraintsLength;
 
@@ -26,7 +26,7 @@ class AddressType extends AbstractType
                 'attr' => [
                     'placeholder' => ' '
                 ],
-                'required' => 'true',
+                'required' => 'false',
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Prénom',
@@ -100,19 +100,17 @@ class AddressType extends AbstractType
             ])
             ->add('company',TextType::class, [
                 'label' => 'Entreprise',
-                'constraints' => new ConstraintsLength([
-                    'min' => 2
-                ]),'attr' => [
+                'attr' => [
                     'placeholder' => 'Nom de votre entreprise'
                 ],
-                'required' => 'true',
+                'required' => false,
             ])
             ->add('instruction',TextareaType::class, [
                 'label' => 'Avons-nous besoin de directions supplémentaires pour trouver cette adresse?',
                 'attr' => [
                     'placeholder' => "Fournir des détails tels que la description du bâtiment, un point de repère à proximité ou d'autres instructions de navigation"
                 ],
-                'required' => 'true',
+                'required' => false,
             ])
             ->add('codePorte',TextType::class, [
                 'label' => 'Faut-il un code de sécurité ou un numéro de téléphone pour accéder à ce bâtiment ?',
@@ -120,14 +118,18 @@ class AddressType extends AbstractType
                     'min' => 2,
                     'max' => 30
                 ]),'attr' => [
-                    'placeholder' => 'Merci de saisir votre nom'
+                    'placeholder' => 'EX:1759'
                 ],
-                'required' => 'true',
+                'required' => false,
+            ])
+            ->add('notWeekEnd', CheckboxType::class, [
+                'label'    => 'Pas de livraison le week-end?',
+                'required' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter une adresse',
                 'attr' => [
-                    'class' => 'btn btn-primary btn-lg'
+                    'class' => 'btn btn-block btn-primary btn-lg'
                 ] 
             ])
         ;

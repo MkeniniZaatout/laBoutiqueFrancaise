@@ -4,33 +4,27 @@
 
 {% block content %}
 <div class='container'>
-        <a href="" class='btn btn-sm btn-info float-right'>AJOUTER UNE ADRESSE</a>
+        <a href="{{ path("compte_address_add") }}" class='btn btn-sm btn-info float-right'>AJOUTER UNE ADRESSE</a>
         <h1>Mes adresses : </h1>
         <hr>
         <h4>Vos addresses actuel : </h4>
         <div class='mt-2 row m-3'>
         {% if addresses|length > 0 %}
-                <div class="mb-3 col-md-4 card">
-                        {{dump(addresses)}}
+                {% for addresse in addresses %}
+                <div class="mb-3 col-md-4 card mr-1 text-center">
+                        <h3>{{addresse.name}}</h3>
+                        <p>{{addresse.firstname}} {{addresse.lastname}}</br> 
+                        {{addresse.address}} </br> 
+                        {{addresse.postal}} {{addresse.City}} {{addresse.country}}</p>
+                        <a href="{{ path("compte_address_remove") }}" class='btn btn-danger float-right mb-1'>Supprimer</a>
+                        <a href="{{ path("compte_address_edit") }}" class='btn btn-secondary float-right'>Modifier</a>
                 </div>
-                <div class="mb-3 col-md-4 card">
-                        {{dump(addresses)}}
-                </div>
-                <div class="mb-3 col-md-4 card">
-                        {{dump(addresses)}}
-                </div>
-                <div class="mb-3 col-md-4 card">
-                        {{dump(addresses)}}
-                </div>       
+                {% endfor %}
         {% else %}
                 <p> Vous n'avez pour l'instant aucune adresse, ajoutez une adresse <a href='{{ path("compte_address_add") }}'>ici</a>. </p>
         {% endif %}
         </div>
-        {% for addresse in addresses %}
-        <div class="col-md-4">
-        {{dump(addresse)}}
-        </div>
-        {% endfor %}
+
         <a class='mt-4' href="">Retour</a>
 
 </div>
