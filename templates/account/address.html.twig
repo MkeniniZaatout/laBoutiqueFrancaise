@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class='container'>
-        <a href="{{ path("compte_address_add") }}" class='btn btn-sm btn-info float-right'>AJOUTER UNE ADRESSE</a>
+        <a href="{{ path("compte_address_add") }}" class='btn btn-outline-info btn-sm float-right'>AJOUTER UNE ADRESSE</a>
         <h1>Mes adresses : </h1>
         <hr>
         <h4>Vos addresses actuel : </h4>
@@ -12,7 +12,7 @@
         {% set adresses = app.user.userAddress %}
         {% if adresses|length > 0 %}
                 {% for addresse in adresses %}
-                <div class="mb-3 col-md-4 card mr-1 text-center">
+                <div class="mb-3 col-md-3 card mr-1 text-center">
                         <h3>{{addresse.name}}</h3>
                         <p>{{addresse.firstname}} {{addresse.lastname}}</br> 
                         {{addresse.address}} </br> 

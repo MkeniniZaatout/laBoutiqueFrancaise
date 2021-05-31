@@ -51,9 +51,15 @@ class User implements UserInterface
      */
     private $userAddress;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Livraison::class, mappedBy="user")
+     */
+    private $livraisons;
+
     public function __construct()
     {
         $this->y = new ArrayCollection();
+        $this->livraisons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,6 +192,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($userAddress->getUser() === $this) {
                 $userAddress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Livraison[]
+     */
+    public function getLivraisons(): Collection
+    {
+        return $this->livraisons;
+    }
+
+    public function addLivraison(Livraison $livraison): self
+    {
+        if (!$this->livraisons->contains($livraison)) {
+            $this->livraisons[] = $livraison;
+            $livraison->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivraison(Livraison $livraison): self
+    {
+        if ($this->livraisons->removeElement($livraison)) {
+            // set the owning side to null (unless already changed)
+            if ($livraison->getUser() === $this) {
+                $livraison->setUser(null);
             }
         }
 
