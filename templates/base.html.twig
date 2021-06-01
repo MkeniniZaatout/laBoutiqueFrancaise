@@ -7,7 +7,6 @@
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Jekyll v4.1.1">
         <title>{% block title %}La Boutique Française - boutique 100% française{% endblock %}</title>
-
         <!-- Bootstrap core CSS -->
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Custom styles for this template -->
@@ -55,13 +54,20 @@
                         </li>
                     </ul>
                     <div class="navbar-item-custom">
+                        
                         {% if app.user %}
                             <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Deconnexion</a>
                         {% else %}
                             <a href="{{ path('app_login') }}">Connexion </a> | <a href="{{ path('register') }}"> Inscription</a>
                         {% endif %}
                     </div>
-                    &ensp;|&ensp;<a href="{{ path('show_panier') }}"><img src="{{ asset('img/shopping-cart.png') }}" width='18px'></a><span class='badge badge-light'>1</span>
+                    {% if app.user %}
+                        {% set quantity = null %} 
+                        {% if app.session.get('panier') %}
+                            {% set quantity = app.session.get('panier')|length %}
+                        {% endif %}
+                    &ensp;|&ensp;<a href="{{ path('show_panier') }}"><img src="{{ asset('img/shopping-cart.png') }}" width='18px'></a><span class='badge badge-light'>{{quantity }}</span>                    
+                    {% endif %}
                 </div>
             </nav>
         </header>

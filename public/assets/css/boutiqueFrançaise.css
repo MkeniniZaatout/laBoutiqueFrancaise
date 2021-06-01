@@ -5,9 +5,6 @@
 
 body {
     position: relative;
-}
-
-body  {
     font-family :Crimson ;
 }
 
@@ -40,4 +37,10 @@ select option {
 
 .panier-product-img {
     width: 15% !important;
+}
+
+
+.block-small {
+    max-width: 600px;
+    margin: 0 auto;
 }
