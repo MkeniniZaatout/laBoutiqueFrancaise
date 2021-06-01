@@ -15,16 +15,19 @@ class OrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $user = $options['constraints'][0];
         $builder
         ->add('address', EntityType::class, [
             'class' => Address::class,
-            'label' => 'Séléctionné votre adresse :',
+            'label' => 'Séléctionné votre adresse : ',
             'required' => true,
+            'choices' => $user->getUserAddress(),
+            /*
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('address')
-                    ->orderBy('livreur.name', 'ASC');
-            },
-            'expanded' => false
+                    ->orderBy('address.address', 'ASC');
+            },*/
+            'expanded' => true
         ])
         ->add('livreurs', EntityType::class, [
             'class' => Livreur::class,
@@ -34,7 +37,7 @@ class OrderType extends AbstractType
                 return $er->createQueryBuilder('livreur')
                     ->orderBy('livreur.name', 'ASC');
             },
-            'expanded' => false
+            'expanded' => true
         ])
         ->add('submit', SubmitType::class, [
             'label' => "Valider",
