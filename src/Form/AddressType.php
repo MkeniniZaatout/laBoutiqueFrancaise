@@ -26,7 +26,7 @@ class AddressType extends AbstractType
                 'attr' => [
                     'placeholder' => ' '
                 ],
-                'required' => 'false',
+                'required' => true,
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Prénom',
@@ -37,7 +37,7 @@ class AddressType extends AbstractType
                 'attr' => [
                     'placeholder' => ' '
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('firstname',TextType::class, [
                 'label' => 'Nom',
@@ -47,7 +47,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => 'Merci de saisir votre nom'
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('address',TextType::class, [
                 'label' => 'Adresse',
@@ -56,7 +56,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => 'Adresse postale, boîte postale, nom de la société, a/s'
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('postal',TextType::class, [
                 'label' => 'Code postal',
@@ -66,7 +66,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => ''
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('City',TextType::class, [
                 'label' => 'Ville',
@@ -76,7 +76,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => ''
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('country',TextType::class, [
                 'label' => 'État/province/région',
@@ -86,7 +86,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => ''
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('phone',TextType::class, [
                 'label' => 'Numéro de téléphone',
@@ -96,7 +96,7 @@ class AddressType extends AbstractType
                 ]),'attr' => [
                     'placeholder' => ''
                 ],
-                'required' => 'true',
+                'required' => true,
             ])
             ->add('company',TextType::class, [
                 'label' => 'Entreprise',

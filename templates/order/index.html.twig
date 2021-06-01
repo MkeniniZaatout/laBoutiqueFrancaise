@@ -11,10 +11,16 @@
 <div class='row'>
     <div class='col-md-6'>
         <p><b>-Choisir mon adresse</b></p>
-        <b>-Choisir le transporteur</b>
+        {{ form_start(formOrder) }}
+            <div class='col-md-6'>
+                {{ form_row(formOrder.livreurs) }}
+            </div>
+
+        {{ form_end(formOrder) }}
     </div>
     <div class='col-md-6'>
         <p><b> Recapitulatif de la commande </b></p>
+        {{ dump(app.session.get('panier')) }}
         <a href='' class='btn btn-action btn-success'> Payer </a>
     </div>
 
