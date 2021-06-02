@@ -50,6 +50,11 @@ class Livraison
      */
     private $livraisonDetails;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPaid;
+
     public function __construct()
     {
         $this->livraisonDetails = new ArrayCollection();
@@ -146,6 +151,18 @@ class Livraison
                 $livraisonDetail->setLivraison(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(?bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }

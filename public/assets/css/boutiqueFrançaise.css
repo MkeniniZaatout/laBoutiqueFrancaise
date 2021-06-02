@@ -44,3 +44,11 @@ select option {
     max-width: 600px;
     margin: 0 auto;
 }
+
+.form-check {
+    /*
+    background-color:#f4f8ff;
+    margin-top: 5px;
+    padding: 18px 60px;
+    */
+}

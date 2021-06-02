@@ -15,7 +15,7 @@ class OrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $options['constraints'][0];
+        $user = $options['user'];
         $builder
         ->add('address', EntityType::class, [
             'class' => Address::class,
@@ -40,9 +40,9 @@ class OrderType extends AbstractType
             'expanded' => true
         ])
         ->add('submit', SubmitType::class, [
-            'label' => "Valider",
+            'label' => "Valider ma commande",
             'attr' => [
-                'class' => 'btn btn-primary btn-block'
+                'class' => 'btn btn-primary btn-lg btn-block'
             ]                    
         ]);
     }
@@ -51,6 +51,7 @@ class OrderType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
+            'user' => []
         ]);
     }
 }

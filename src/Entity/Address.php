@@ -245,6 +245,6 @@ class Address
     }
 
     public function __toString() {
-        return $this->name ." : ". $this->address;
+        return "[div]".$this->name ."[br]". $this->address."[br]".$this->getPostal()." ".$this->getCity()."[br]".$this->getCountry()."[/div]";
     }
 }

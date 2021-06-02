@@ -1,0 +1,39 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Prix</th>
+        <th class='text-center' scope="col">Quantité</th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set totalProduit = null %}
+    {% set prixTotal = null %}
+    
+
+    {% for product in panier %} 
+        <tr>
+            <td><a href='{{path('product', {slug : product.product.slug })}}' ><img src="{{ asset('uploads/') }}{{product.product.illustration}}" class="panier-product-img" alt="{{product.product.slug}}"></a>&ensp;{{product.product.subtitle}}</td>
+            <td class="text-center font-weight-bold">{{product.product.price * 0.01}}€</td>
+            <td class='text-center' style="width: 150px;">
+                    <a class="btn mb-3" href='{{path('panier_add', {id : product.product.id})}}'><img src='{{ asset('img/add.png')}}' width='13'>&ensp;</a>
+                        x {{product.quantity}}&ensp;
+                    {% if product.quantity > 1 %}<a class="btn mb-3" href='{{path('panier_remove_quantity', {id : product.product.id})}}'><img src='{{ asset('img/minus-line.png')}}' width='14'></a>{% endif %}
+            </td>
+            <td class="text-center font-weight-bold">
+                <a href='{{path('panier_remove_product', {id : product.product.id })}}' class="btn mb-4">
+                    <img src="{{ asset('img/delete.png')}}" width='15' alt='supprimer mon produit'>
+                </a><!-- <br>
+                <a href='' class="btn btn-light">Mettre de coté</a> -->
+            </td>
+        </tr>
+        {% set prixTotal = prixTotal + ((product.product.price * product.quantity) * 0.01) %}
+        {% set totalProduit = totalProduit + product.quantity %}
+    {% endfor %}
+    </tbody>
+</table>
+<div class="mt-3 text-right">
+    <div class="mb-1">Nombre de produit : {{totalProduit}}</div>
+    <div>Prix Total de mon panier : {{prixTotal}} €</div>
+</div>

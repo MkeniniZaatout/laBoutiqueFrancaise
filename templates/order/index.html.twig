@@ -3,30 +3,41 @@
 {% block title %}Validation de la commande - La Boutique Française{% endblock %}
 
 {% block content %}
-
-<h2>Ma commande : </h2>
-
-<p>Veuillez choisir votre adresse de livraison et votre transporteur :</p>
-
-<div class='row'>
-    <div class='col-md-6'>
-        {{ form_start(formOrder) }}
-            <div class='row'>
-                <div class='col-md-6'>
-                    {{ form_row(formOrder.address) }}
-                </div>
-                <div class='col-md-6'>
-                    {{ form_row(formOrder.livreurs) }}
-                </div>
-            </div>
-        {{ form_end(formOrder) }}
-    </div>
-    <div class='col-md-6'>
-        <p><b> Recapitulatif de la commande </b></p>
-        {{ dump(app.session.get('panier')) }}
-        <a href='' class='btn btn-action btn-success'> Payer </a>
-    </div>
+<div class=''>
 
 </div>
+
+<div class='container'>
+    <h1>Votre commande</h1>
+    <div class='row mt-4'>
+        <div class='col-md-5'>
+            <p><b> Recapitulatif de la commande </b></p>
+        {% include './panier/recap.html.twig' with {panier: app.session.get('panier')} only %}
+        <!-- <div class='text-right mt-3'><a href='' class='btn btn-action btn-lg btn-success'> Payer </a></div> -->
+        </div>
+        <div class="vl" style='border-left: 5px solid green;height: 455px;'></div>
+        <div class='col-md-5'>
+            <b>Veuillez choisir votre adresse de livraison et votre transporteur.</b>
+            {% set formHtml %}
+                {{ form_start(formOrder) }}
+                <div class='row'>
+                    <div class='col-md-6'>
+                        {{ form_row(formOrder.address) }}
+                    </div>
+                    <div class='col-md-6'>
+                        {{ form_row(formOrder.livreurs) }}
+                    </div>
+                </div>
+                <div class='text-center'>
+                    {{ form_row(formOrder.submit) }}
+                </div>
+                {{ form_end(formOrder) }}
+            {% endset %}
+            {{ formHtml|replace({'[br]' : '<br/>', '[div]' : '<div class="mb-3">', '[/div]' : '</div>', '[small]' : '<small>', '[/small]' : '</small>'})|raw }}
+        </div>
+    </div>
+    
+</div>
+
 
 {% endblock %}

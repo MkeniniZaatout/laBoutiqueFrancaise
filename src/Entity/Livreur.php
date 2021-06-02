@@ -74,6 +74,6 @@ class Livreur
     }
 
     public function __toString() {
-        return $this->name .'  '.  $this->price .'€'; 
+        return "[div]".$this->name .' 🚚 '.  number_format($this->price, 2, ',', ',') .'€'.'[br]'.'[small]'.$this->getDescription().'[/small]'.'[/div]'; 
     }
 }
