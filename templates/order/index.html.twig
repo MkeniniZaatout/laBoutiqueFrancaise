@@ -3,9 +3,6 @@
 {% block title %}Validation de la commande - La Boutique Française{% endblock %}
 
 {% block content %}
-<div class=''>
-
-</div>
 
 <div class='container'>
     <h1>Votre commande</h1>
@@ -19,7 +16,7 @@
         <div class='col-md-5'>
             <b>Veuillez choisir votre adresse de livraison et votre transporteur.</b>
             {% set formHtml %}
-                {{ form_start(formOrder) }}
+                {{ form_start(formOrder, {action:path('order_recap')}) }}
                 <div class='row'>
                     <div class='col-md-6'>
                         {{ form_row(formOrder.address) }}

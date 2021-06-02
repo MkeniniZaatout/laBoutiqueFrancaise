@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation de la commande - La Boutique Française{% endblock %}
+
+
+{% block content %}
+
+<div class='container'>
+    <h1>Récapitulatif :</h1>
+    <p> Verifier vos informations avant de la paiement :</p>
+    <hr>
+    <div class='row'>
+        <div class='col-md-6'>
+            <h4>L'adresse de livraison : </h4>
+            {{dump(address.__toString())}}
+            <h4>Le transporteur choisie : </h4>
+            {{dump(livreur.__toString())}}
+        
+        </div>
+        <div class='col-md-6'>
+        <h4>Ma commande : </h4>
+        {% include './panier/recap.html.twig' with {panier: app.session.get('panier')} only %}
+        
+        </div>
+        <hr>
+        <b>Sous-Total : </b></br>    
+        <b>Livraison : </b></br>
+        <b> Total avec frais de livraison : </b>
+    </div>
+<a href='' class='btn-success btn-block btn'>Payer la commander</a>
+</div>
+
+{% endblock %}
