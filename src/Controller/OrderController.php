@@ -49,7 +49,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/commande/recapitulatif", name="order_recap")
+     * @Route("/commande/recapitulatif", name="order_recap", methods={"POST"})
      */
     public function add(Panier $panier,Request $request): Response
     {
@@ -86,6 +86,7 @@ class OrderController extends AbstractController
             
             // dd($panier->get('panier')[0]->name);
             // Enregistrer mes produits dans livraison details
+            $prixTotal = null;
             foreach ($panier->get('panier') as $product) {
                 $livraisonDetail = new LivraisonDetails();
                 $livraisonDetail->setLivraison($livraison);
@@ -94,11 +95,12 @@ class OrderController extends AbstractController
                 $livraisonDetail->setPrice($product['product']->getPrice() / 100);
                 $livraisonDetail->setTotal($livraisonDetail->getPrice() * $livraisonDetail->getQuantity());
                 $this->entityManager->persist($livraisonDetail);
+                $prixTotal += $livraisonDetail->getTotal();
             }
             // $this->entityManager->flush();    
             // dd($livraison);
         }
         
-        return $this->render('order/add.html.twig', ['address' => $address, 'livreur' => $livreur]);
+        return $this->render('order/add.html.twig', ['address' => $address, 'livreur' => $livreur, 'prixTotal' => $prixTotal]);
     }
 }

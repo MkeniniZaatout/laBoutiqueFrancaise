@@ -4,30 +4,29 @@
 
 
 {% block content %}
-
 <div class='container'>
     <h1>Récapitulatif :</h1>
     <p> Verifier vos informations avant de la paiement :</p>
     <hr>
     <div class='row'>
-        <div class='col-md-6'>
+        <div class='col-md-6 text-center'>
+        {% set html %}
             <h4>L'adresse de livraison : </h4>
-            {{dump(address.__toString())}}
-            <h4>Le transporteur choisie : </h4>
-            {{dump(livreur.__toString())}}
-        
+            {{address.__toString()}}
+            <h4>Le transporteur choisi : </h4>
+            {{livreur.__toString()}}
+        {% endset %}
+        {{ html|replace({'[br]' : '<br/>', '[div]' : '<div class="mb-3">', '[/div]' : '</div>', '[small]' : '<small>', '[/small]' : '</small>'})|raw}}
         </div>
         <div class='col-md-6'>
         <h4>Ma commande : </h4>
         {% include './panier/recap.html.twig' with {panier: app.session.get('panier')} only %}
-        
+        <hr><p class='font-weight-bold mt-1'>Total avec frais de livraison : {{ (livreur.price + prixTotal) }}€ </p>
+        <a href='' class='btn-success btn-block btn'>Payer la commander | {{ (livreur.price + prixTotal) }}€</a>
         </div>
         <hr>
-        <b>Sous-Total : </b></br>    
-        <b>Livraison : </b></br>
-        <b> Total avec frais de livraison : </b>
     </div>
-<a href='' class='btn-success btn-block btn'>Payer la commander</a>
+
 </div>
 
 {% endblock %}
