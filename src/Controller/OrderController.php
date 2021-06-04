@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class OrderController extends AbstractController
 {
@@ -49,11 +51,10 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/commande/recapitulatif", name="order_recap", methods={"POST"})
+     * @Route("/commande/recapitulatif", name="order_recap")
      */
     public function add(Panier $panier,Request $request): Response
     {
-        // dd($panier->get('panier'));
 
         $form = $this->createForm(OrderType::class, null,array('user' => $this->getUser())
         );
@@ -84,7 +85,6 @@ class OrderController extends AbstractController
 
             $this->entityManager->persist($livraison);
             
-            // dd($panier->get('panier')[0]->name);
             // Enregistrer mes produits dans livraison details
             $prixTotal = null;
             foreach ($panier->get('panier') as $product) {
@@ -97,10 +97,9 @@ class OrderController extends AbstractController
                 $this->entityManager->persist($livraisonDetail);
                 $prixTotal += $livraisonDetail->getTotal();
             }
-            // $this->entityManager->flush();    
-            // dd($livraison);
+
+            $this->entityManager->flush();    
         }
-        
         return $this->render('order/add.html.twig', ['address' => $address, 'livreur' => $livreur, 'prixTotal' => $prixTotal]);
     }
 }

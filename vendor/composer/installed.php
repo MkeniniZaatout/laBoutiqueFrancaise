@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b305482fca331459dd9d1e010084490b30ceabb6',
+    'reference' => '990114ea1be875367e5f634d05737522ae25d197',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b305482fca331459dd9d1e010084490b30ceabb6',
+      'reference' => '990114ea1be875367e5f634d05737522ae25d197',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -421,6 +421,15 @@
       array (
       ),
       'reference' => '430d14c01836b77c28092883d195a43ce413ee32',
+    ),
+    'stripe/stripe-php' => 
+    array (
+      'pretty_version' => 'v7.80.0',
+      'version' => '7.80.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '566900968407302f88a925ba731c87c05fe98a7a',
     ),
     'symfony/asset' => 
     array (
