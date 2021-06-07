@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Succes de la commande - La Boutique Française{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+    <div class="alert alert-success" role="alert">
+        <h1> Succes de la commande </h1>
+        <p>Mr {{livraison.user.firstname}} {{livraison.user.lastname}}, nous vous remerçions pour votre l'achat de votre commande n°{{livraison.ref}}.</p></br>
+        <p>Un conformation a été envoyé sur votre mail {{livraison.user.email}} et vous retrouverez toutes les informations pour le suivis de la livraison de la commande à travers le mail qui a été envoyé.</p></br> 
+
+    </div>
+</div>
+
+{% endblock %}

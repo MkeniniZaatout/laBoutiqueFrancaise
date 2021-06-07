@@ -8,7 +8,9 @@ use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,6 +30,13 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('La Boutique Française');
     }
 
+    /*
+    public function configureCrud(Crud $crud): Crud {
+
+        return $crud->setDefaultSort(['id' => 'DESC']);
+    }
+    */
+    
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');

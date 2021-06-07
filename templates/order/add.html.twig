@@ -25,7 +25,7 @@
         <a class='btn-success btn-block btn mb-4' id='checkout-button'>Payer la commander | {{ (livreur.price + prixTotal) }}€</a>
         </div>
         <hr>
-    </div>zerzezerzerzer
+    </div>
 
 </div>
 {% endblock %}
@@ -34,15 +34,21 @@
 <script type='text/javascript'>
 var stripe = Stripe("pk_test_51IQaYSCmsFH1G20FBuqkKwIfi2WLoWOAUx2nzPPX9kKktRIhDIiVJzF91dk6qHgRnKedliBOeQfhmBidw9DlEtlc00XcqlT5mT");
 var checkoutButton = document.getElementById("checkout-button");
+const URL = "/commande/create-session/{{ ref }}";
 checkoutButton.addEventListener("click", function () {
-fetch("/commande/create-session", {
+fetch(URL, {
             method: "POST",
         })
         .then(function (response) {
           return response.json();
         })
         .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
+            if(session.error) {
+                // Redirection :
+                window.location.replace("{{ path('order') }}"); 
+            } else {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            }
         })
         .then(function (result) {
           // If redirectToCheckout fails due to a browser or network
@@ -56,32 +62,5 @@ fetch("/commande/create-session", {
           console.error("Error:", error);
         });
 });
-/*
-// Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe("pk_test_51IQaYSCmsFH1G20FBuqkKwIfi2WLoWOAUx2nzPPX9kKktRIhDIiVJzF91dk6qHgRnKedliBOeQfhmBidw9DlEtlc00XcqlT5mT");
-    var checkoutButton = document.getElementById("checkout-button");
-    checkoutButton.addEventListener("click", function () {
-        fetch("/commande/create-session", {
-            method: "POST",
-        })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function (result) {
-          // If redirectToCheckout fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using error.message.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    });
-    */
 </script>
 {% endblock %}

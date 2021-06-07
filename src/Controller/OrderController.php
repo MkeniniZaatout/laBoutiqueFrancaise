@@ -17,6 +17,10 @@ use Stripe\Checkout\Session;
 
 class OrderController extends AbstractController
 {
+
+
+    private $entityManager;
+
     /**
      * AccountController
      * @param $entityManager
@@ -68,6 +72,8 @@ class OrderController extends AbstractController
 
             // Enregistrer ma commande en base
             $livraison = new Livraison();
+            $ref = $date->format('dmY') ."-". uniqid();
+            $livraison->setRef($ref);
             $livraison->setUser($this->getUser());
             $livraison->setCreatedAt($date);
             $livraison->setPrice($livreur->getPrice());
@@ -98,8 +104,52 @@ class OrderController extends AbstractController
                 $prixTotal += $livraisonDetail->getTotal();
             }
 
-            $this->entityManager->flush();    
+            $this->entityManager->flush();
         }
-        return $this->render('order/add.html.twig', ['address' => $address, 'livreur' => $livreur, 'prixTotal' => $prixTotal]);
+        return $this->render('order/add.html.twig', ['address' => $address, 'livreur' => $livreur, 'prixTotal' => $prixTotal, 'ref' => $livraison->getRef()]);
+    }
+
+    /**
+     * @Route("/commande/success/{stripeSessionId}", name="order_validate")
+    */
+    public function succes(Panier $panier, $stripeSessionId): Response 
+    {
+        $livraison = $this->entityManager->getRepository(Livraison::class)->findOneBy(['stripeSessionId' => $stripeSessionId]);
+        // Si la livraison n'existe pas ou que l'utilisateur tente d'accéder à une commande d'une autre personne
+        if((!$livraison) || ($livraison->getUser() != $this->getUser()) ) {
+            return $this->redirectToRoute('home', ['message' => "La livraison n'a pas été trouvé"]);
+        }
+
+        // Mettre le statut isPaid à true
+        $livraison->setIsPaid(true);
+        $this->entityManager->flush();
+        // Envoyer un email pour confirmer l'achat de la commande.
+        
+        // Vider le panier 
+        $panier->delete(); 
+
+        
+        return $this->render('order/success.html.twig', ['livraison' => $livraison]);
+    }
+
+
+    /**
+     * @Route("/commande/error/{stripeSessionId}", name="order_error")
+     */
+    public function error($stripeSessionId): Response 
+    {
+        $livraison = $this->entityManager->getRepository(Livraison::class)->findOneBy(['stripeSessionId' => $stripeSessionId]);
+        // Si la livraison n'existe pas ou que l'utilisateur tente d'accéder à une commande d'une autre personne
+        if((!$livraison) || ($livraison->getUser() != $this->getUser()) ) {
+            return $this->redirectToRoute('home', ['message' => "La livraison n'a pas été trouvé"]);
+        }
+        
+        // Mettre le statut isPaid à false
+        $livraison->setIsPaid(false);
+        $this->entityManager->flush();
+
+        // Envoyer un email pour l'echec de l'achat de la commande.
+
+        return $this->render('order/error.html.twig', ['livraison' => $livraison]);
     }
 }
