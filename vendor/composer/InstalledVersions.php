@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '990114ea1be875367e5f634d05737522ae25d197',
+    'reference' => '90d246d84ea9cf5931f8f060f413a8772afd3e1b',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '990114ea1be875367e5f634d05737522ae25d197',
+      'reference' => '90d246d84ea9cf5931f8f060f413a8772afd3e1b',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -1131,6 +1131,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'e2d27a86c3f47859eb07808fa7c8679d30fcbdde',
+    ),
+    'twig/intl-extra' => 
+    array (
+      'pretty_version' => 'v3.3.0',
+      'version' => '3.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '919e8f945c30bd3efeb6a4d79722cda538116658',
     ),
     'twig/twig' => 
     array (
