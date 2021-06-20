@@ -6,6 +6,9 @@
 
     <div class="container">
         <h1 class="mt-5"> Inscription : </h1>
+        {% if notification %}
+            <div  class="alert alert-success" role="alert">{{notification}}</div>
+        {% endif %}
         {{ form(form) }}
     </div>
 

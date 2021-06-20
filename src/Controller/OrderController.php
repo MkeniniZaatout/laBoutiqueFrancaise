@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use App\Classe\Mail;
 
 class OrderController extends AbstractController
 {
@@ -124,7 +125,11 @@ class OrderController extends AbstractController
         $livraison->setIsPaid(true);
         $this->entityManager->flush();
         // Envoyer un email pour confirmer l'achat de la commande.
-        
+        $notification = "Votre Commande s'est correctement déroulé. Vous pouvez des à présent suivre la livraison sur ce lien -> XXXXXXXX.";
+        $search_email = $livraison->getuser()->getEmail();
+        $search_email = $livraison->getFirstname();
+        $mail = new Mail();
+        $mail->send($livraison->getuser()->getEmail(), $livraison->getuser()->getFirstname(), 'Commande','<b>Bonjour Mr '.$livraison->getuser()->getFirstname().' '.$$livraison->getuser()->getLastname().'</b><br> '.$notification);
         // Vider le panier 
         $panier->delete(); 
 

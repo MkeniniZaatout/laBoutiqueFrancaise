@@ -12,3 +12,4 @@ symfony console make:form
 symfony console make:auth
 symfony console make:admin:dashboard
 symfony console make:admin:crud
+symfony server:ca:install
