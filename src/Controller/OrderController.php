@@ -125,15 +125,13 @@ class OrderController extends AbstractController
         $livraison->setIsPaid(true);
         $this->entityManager->flush();
         // Envoyer un email pour confirmer l'achat de la commande.
-        $notification = "Votre Commande s'est correctement déroulé. Vous pouvez des à présent suivre la livraison sur ce lien -> XXXXXXXX.";
-        $search_email = $livraison->getuser()->getEmail();
-        $search_email = $livraison->getFirstname();
+        $notification = "L'achat de votre Commande n°" . $livraison->getRef() . " s'est correctement déroulé. Vous pouvez des à présent suivre la livraison sur ce lien -> XXXXXXXX.";
+        $recap = "<h5>Adresse de livraison : </h5> ".$livraison->getDeliveryAddress()."<h5>Date de la commande : </h5> ".$livraison->getCreatedAt()->format('Y-m-d H:i:s');
+        $notification = $notification."<h2>Récapitulatif de votre commande : </h2>".$recap;
         $mail = new Mail();
-        $mail->send($livraison->getuser()->getEmail(), $livraison->getuser()->getFirstname(), 'Commande','<b>Bonjour Mr '.$livraison->getuser()->getFirstname().' '.$$livraison->getuser()->getLastname().'</b><br> '.$notification);
+        $mail->send($livraison->getuser()->getEmail(), $livraison->getuser()->getFirstname(), 'Merci pour votre commande','<b>Bonjour '.$livraison->getuser()->getFirstname().' '.$livraison->getuser()->getLastname().'</b><br> '.$notification);
         // Vider le panier 
-        $panier->delete(); 
-
-        
+        $panier->delete();
         return $this->render('order/success.html.twig', ['livraison' => $livraison]);
     }
 

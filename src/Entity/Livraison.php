@@ -87,6 +87,17 @@ class Livraison
         return $this;
     }
 
+    public function getTotal(): ?float 
+    {
+        $total = 0.0;
+        $livraisonDetails = $this->getLivraisonDetails()->getValues();
+        foreach ($livraisonDetails as $product) {
+            $total = $total + $product->getTotal();
+        }
+        //dd($total);
+        return $total*100;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;

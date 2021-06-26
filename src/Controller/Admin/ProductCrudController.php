@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
-use App\Entity\Category;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
